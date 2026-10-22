@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 48px 24px;
+        background: #f3f6fb;
+        color: #1f2937;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+
+    
+    </style>
+    <h1>JavaScript ClassWork</h1>
+    <hr />
+    <h2>My name is: <span id="name"></span></h2>
+    <h2>Final Object: <span id="final"></span></h2>
+    <h2>Car: <span id="car"></span></h2>
+    <h2>My Laptop: <span id="laptop"></span></h2>
+    <h2>Object Comparison: <span id="Object"></span></h2>
+    <h2>Resturant Menu Items: <span id="menu"></span></h2>
+    <script>
+      //   <!-- Student Profile card -->
+      const student = {
+        name: "Ade",
+        age: "34",
+        school: "OIC HUB",
+        bestsubject: "JavaScript",
+        isGraduated: true,
+        city: "Osun",
+      };
+      student.isGraduated = "";
+      document.getElementById("name").innerHTML = student.name;
+      document.getElementById("final").innerHTML =
+        student.name + " " + student.age;
+
+      //   Car Object With Method
+
+      const car = {
+        brand: "Toyota",
+        model: "Asper",
+        color: "Red",
+        year: 2008,
+        engineON: false,
+        start: function () {
+          this.engineON = true;
+          return "Engine Started";
+        },
+      };
+
+      const getInfo = function () {
+        return "This car is a " + car.year + " " + car.brand + " " + car.model;
+      };
+
+      document.getElementById("car").innerHTML = getInfo();
+
+      //   Nested Object - My Laptop
+
+      const laptop = {
+        brand: "Dell",
+        model: "Precision 5550",
+        year: 2020,
+        specs: {
+          ram: "8GB",
+          storage: "512GB SSD",
+          processor: "Intel Core i7",
+        },
+      };
+
+      // Change the ram value and also add color into the specs method
+      laptop.specs.ram = "16GB";
+      const addColor = (laptop.specs.color = "Silver");
+
+      // LOGS OUT THE NESTED ACCESS FOR THE PROCESSOR VALUE
+
+      document.getElementById("laptop").innerHTML = laptop.specs.processor;
+
+      //   Object Comparison/Update
+
+      const user1 = {
+        username: "Tunde",
+        password: "1234",
+      };
+      //   checks if the key username exists in the object and updates the password value to 123
+      const userName_Checker = user1.username;
+      const password_updater = (user1.password = "123");
+
+      // prints out the keys and values of the object user1
+      const keys = Object.keys(user1);
+      const values = Object.values(user1);
+      document.getElementById("Object").innerHTML =
+        "Keys: " + keys + "<br>Values: " + values;
+
+      // Mini Project - Resturrant Menu Items
+      const menuItems = {
+        name: 10,
+        price: "$300",
+        isAvaliable: true,
+        order: function () {
+          if (this.isAvaliable == true) {
+            return "Ordered Successfully for $300";
+          } else if (this.isAvaliable == false) {
+            return "Order not available";
+          }
+        }
+      }
+//  prints the isavalible bassed on the current boolean value of the isAvaliable key in the menuItems object
+      document.getElementById("menu").innerHTML = menuItems.order();
+    </script>
+  </body>
+</html>
