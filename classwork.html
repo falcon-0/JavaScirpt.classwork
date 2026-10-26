@@ -7,7 +7,6 @@
   </head>
 
   <body>
-
     <style>
       * {
         box-sizing: border-box;
@@ -21,8 +20,6 @@
         color: #1f2937;
         font-family: Arial, Helvetica, sans-serif;
       }
-
-    
     </style>
     <h1>JavaScript ClassWork</h1>
     <hr />
@@ -32,6 +29,13 @@
     <h2>My Laptop: <span id="laptop"></span></h2>
     <h2>Object Comparison: <span id="Object"></span></h2>
     <h2>Resturant Menu Items: <span id="menu"></span></h2>
+    <hr />
+    <h2>Balance Display:<span id="balance"></span></h2>
+    <h2>Withdrawal Balance: <span id="withdrawalBalance"></span></h2>
+    <h2>Final Balance: <span id="finalBalance"></span></h2>
+    <h2>Order Summary: <span id="summary"></span></h2>
+
+    <h2>Total Price :<span id="Price"></span></h2>
     <script>
       //   <!-- Student Profile card -->
       const student = {
@@ -115,10 +119,115 @@
           } else if (this.isAvaliable == false) {
             return "Order not available";
           }
-        }
-      }
-//  prints the isavalible bassed on the current boolean value of the isAvaliable key in the menuItems object
+        },
+      };
+      //  prints the isavalible bassed on the current boolean value of the isAvaliable key in the menuItems object
       document.getElementById("menu").innerHTML = menuItems.order();
+
+      // LATEST CLASS WORK
+
+      // 6th Question Bank Account simulator
+      const bankaccount = {
+        owner: "FALCON",
+        balance: 758,
+        pin: "123",
+      };
+
+      // adds 100 to bankaccount.balance
+      moneydeposit = 100;
+      const deposit = function () {
+        bankaccount.balance += moneydeposit;
+        return "New balance is $" + bankaccount.balance;
+      };
+      // prints out the new balance  afte adding moneydeposit to the bankaccount.balance
+      document.getElementById("balance").innerHTML = deposit();
+
+      //  if the withdraw is more than the availble balance it prints insufficient
+      moneywithdraw = 546;
+      const withdraw = function () {
+        if (moneywithdraw > bankaccount.balance) return "Insufficient funds";
+        else {
+          bankaccount.balance -= moneywithdraw;
+          return "New balance is $" + bankaccount.balance;
+        }
+      };
+      //  prints out the new balance after the withdraw if it is not more than the available balance
+      document.getElementById("withdrawalBalance").innerHTML = withdraw();
+
+      // prints out the current balance after the deposit and withdraw function runs
+      const checkBalance = function () {
+        return "Current balance is $" + bankaccount.balance;
+      };
+
+      // this prints out the current balance after the deposit and withdraw
+      document.getElementById("finalBalance").innerHTML = checkBalance();
+
+      // object inside Object
+      //  E - commerce Order
+
+      const order = {
+        orderId: 101,
+        customer: {
+          name: "Falcon",
+          email: "OICB @gmail.com",
+          address: {
+            street: "123 Main St",
+            city: "New York",
+            state: "NY",
+            zip: "10001",
+          },
+          products: {
+            name: "Laptop",
+            price: 1000,
+            quantity: 5,
+            isDelivered: false,
+          },
+        },
+      };
+      // gets the product and multiply it by the quanityt
+      const totalprice = function () {
+        return order.customer.products.price * order.customer.products.quantity;
+      };
+
+      // prints the total price of the product
+      document.getElementById("Price").innerHTML = "$ " + totalprice();
+
+      // summary of the order
+
+      const summary = function () {
+        return (
+          "Order" +
+          order.orderId +
+          ":" +
+          order.customer.name +
+          " Ordered " +
+          order.customer.products.quantity +
+          "X " +
+          order.customer.products.name +
+          "= $" +
+          totalprice()
+        );
+      };
+      // prints the summary of the order
+      document.getElementById("summary").innerHTML = summary();
+
+      // Library Book Tracker
+      const Book = {
+        title: "JS for Beginners",
+        author: "John Doe",
+        pages: 200,
+        isRead: false,
+      };
+// sets isread back to true
+      const readBook = function () {
+        Book.isRead = true;
+      };
+//  adds two new key and property intot the Book function
+      const addinfo = ((Book.publsiher = "OIC PUBLISH"), (Book.year = 2026));
+
+      // confirm if the publisher and year was added to the boom function
+      console.log(Book.publsiher);
+      console.log(Book.year);
     </script>
   </body>
 </html>
