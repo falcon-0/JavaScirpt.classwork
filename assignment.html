@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="user-name" required  type="text" placeholder="Input Your Name">
+    <input id="Submit" type="submit">
+    <h2>This is the output:<span id="output"></span> </h2>
+
+    <script>
+        const user_name = []
+
+        document.getElementById("Submit").addEventListener("click",function () {
+        const user_input = document.getElementById("user-name").value
+        user_name.push(user_input)
+        document.getElementById("output").innerHTML = user_name
+        });
+
+       
+     
+    </script>
+</body>
+</html>
