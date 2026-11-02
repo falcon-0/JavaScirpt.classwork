@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+
+<script>
+  // adds yam and garri at the end salt at the start and removes garri  Q1
+  let grocery = ["rice", "beans"];
+  grocery.splice(2, 0, "yam", "garri");
+  grocery.splice(0, 0, "salt");
+  let remove = grocery.slice(0, 4);
+  console.log(grocery);
+  console.log(remove);
+
+  // Q2 finds the index of david and it last index and if the array includes aisha
+
+  let students = ["David", "Aisha", "David", "Tolu", "David"];
+  let index = students.indexOf("David");
+  let last_index = students.lastIndexOf("David");
+  console.log(index);
+  console.log(last_index);
+  let include = students.includes("Aisha");
+  console.log(include);
+
+  // Q3
+
+  let orignal_nums = [100, 200, 300, 400, 500, 600];
+  let slicex = orignal_nums.slice(1, 4);
+  console.log(slicex);
+  console.log(orignal_nums);
+  // the orignal array did not change cause slice() creats a new array and does not touch the oringnal array
+
+  // Q4
+  // REMOVES IBADAN AND OSGBO AND ADD TWO NEW ONCES
+
+  let towns = ["ikeja", "Lekki", "ibadan", "Osogbo", "Abuja"];
+  towns.splice(3, 5);
+  towns.splice(2, 0, "ogbomosho", "ilorin");
+  console.log(towns);
+
+  // Q5
+
+  let cart = ["phone", "powerbank", "charger", "cable"];
+  let position = cart.indexOf("powerbank");
+  cart.splice(position, 1);
+  console.log(position);
+  console.log("item removed " + cart);
+
+  // Q6
+
+  let words = ["Javascript", "is", "very", "easy"];
+  let to_string = words.toString();
+  let to_join = words.join("-");
+  console.log(to_join);
+  console.log(to_string);
+
+  // Q7
+
+  let invited = ["Sola", "Tunde", "Bisi"];
+  let newGuest = "Kunle";
+  let guest_in = invited.includes("Kunle");
+  console.log(guest_in);
+  let is_in = invited.push(newGuest);
+  console.log(invited);
+
+  // Q8
+
+  let products = [
+    { id: 1, name: "Shoe", price: "5000" },
+    { id: 2, name: "Bag", price: "300" },
+    { id: 3, name: "Cap", price: "1500" },
+  ];
+  let find = products.find((product) => product.id === 1);
+  console.log(find)
+
+
+
+//  Q9
+
+let a =["a","b","c"]
+let b = ["d" , "e"]
+a.pop(3)
+let join = a.concat(b);
+console.log(join)
+
+
+
+
+// Q10
+
+
+let sentence = ["I", "am", "learing", "Javascript"];
+let find_index = sentence.indexOf("learing");
+sentence.splice(2,1,"learning")
+sentence.push("Today")
+let join_sentence = sentence.join(" ")
+console.log(join_sentence)
+</script>
+
+
