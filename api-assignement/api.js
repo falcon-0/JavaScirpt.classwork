@@ -1,36 +1,76 @@
-async function oneuser() {
-  const response = await fetch("https://dummyjson.com/posts/2");
-  const data = await response.json();
-  document.getElementById("title").innerHTML ="<b>Title: </b>" +  data.title
-  document.getElementById("body").innerHTML = "<b>Body:  </b>" + data.body
-  document.getElementById("userId").innerHTML = "User ID:" + data.userId
-  document.getElementById("reactions").innerHTML = "Likes: " + data.reactions.likes
-  document.getElementById("views").innerHTML = "Views: " + data.views
-  document.getElementById("dislike").innerHTML = "Dislikes: " + data.reactions.dislikes
+async function allPost() {
+  try {
+    const container = document.getElementById("container");
+    const getPosts = localStorage.getItem("Posts");
+    let convertPost;
+
+    if (getPosts) {
+      convertPost = JSON.parse(getPosts);
+    } else {
+      const response = await fetch("https://dummyjson.com/posts/tag");
+      const data = await response.json();
+
+      convertPost = data.posts;
+      localStorage.setItem("Posts", JSON.stringify(convertPost));
+    }
+
+    container.innerHTML = "";
+
+    convertPost.forEach((post) => {
+      container.innerHTML += `
+        <div>
+          <h1>${post.title}</h1>
+          <p>${post.body}</p>
+          <p>
+            Views: ${post.views} |
+            Likes: ${post.reactions.likes} |
+            Dislikes: ${post.reactions.dislikes}
+             Tags : ${post.tags}
+          </p>
+        </div>
+      `;
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
-oneuser();
- 
 
+allPost();
 
+document.getElementById("submit").addEventListener("click", async function searchPost() {
+  try {
+    const container = document.getElementById("container");
+    const InputValue = document.getElementById("looking").value;
+    // const Limit = document.getElementById("limit").value
+    // const Skip = document.getElementById("search".value)
+    const response = await fetch(
+      
+       `https://dummyjson.com/posts/tag/search?q=${InputValue}`
+    );
+    const data = await response.json();
 
+    container.innerHTML = "";
 
-const searched_ = []
- let submit = document.getElementById("submit").addEventListener("click", function(){
-   const user_input = document.getElementById("looking").value 
-  searched_.push(user_input)
-   
-async function sort() {
-    const response_sort = await fetch(`https://dummyjson.com/posts/search?q=${searched_}`);
-    const data_sort = await response_sort.json();
+    if (!data.posts.length) {
+      container.innerHTML = "Search not found";
+      return;
+    }
 
-    document.getElementById("search-post").innerHTML = "<b>Body: </b>" + data_sort.posts[searched_].body
-    document.getElementById("search-userId").innerHTML = "<b>User ID: </b>" + data_sort.posts[searched_].userId
-    document.getElementById("search-reactions").innerHTML = "<b>Likes: </b>" + data_sort.posts[searched_].reactions.likes
-    document.getElementById("search-views").innerHTML = "<b>Views: </b>" + data_sort.posts[searched_].views
-    document.getElementById("search-dislike").innerHTML = "<b>Dislikes: </b>" + data_sort.posts[searched_].reactions.dislikes
-}
-sort();
-
-})
-
-
+    data.posts.forEach((post) => {
+      container.innerHTML += `
+        <div>
+          <h1>${post.title}</h1>
+          <p>${post.body}</p>
+          <p>
+            Views: ${post.views} |
+            Likes: ${post.reactions.likes} |
+            Dislikes: ${post.reactions.dislikes}
+           
+          </p>
+        </div>
+      `;
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
